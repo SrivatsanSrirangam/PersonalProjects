@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Times For Movie</title>
+        <style type="text/css">
+        table.people td {
+            padding: 100px;
+            text-align: left;
+            font-family: American Typewriter, serif;
+            border: 2px solid #000; 
+            background-color: #FFF8DC;    
+            color: #8B4513;    
+            border-bottom: 2px solid #000;
+        }   
+        </style>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h:dataTable styleClass="people" 
+                             value="#{movieBean.timesForMovie}" var="shownattimes"
+                             style="font-size: #{DCProfileTabGeneralController.editable ? '14px' : '24px' }">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Available Times For #{movieBean.movie.movieName}"/>
+                        </f:facet>
+                        <h:commandLink value="#{shownattimes.shownattimesPK.showTime}" 
+                            action="BookTicket.xhtml" >
+                        </h:commandLink>
+                    </h:column>
+                
+
+               </h:dataTable>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
+

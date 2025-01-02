@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>List Of Theaters</title>
+        <style type="text/css">
+        table.people td {
+            padding: 100px;
+            text-align: center;
+            font-family: Palatino, URW Palladio L, serif;
+            border: 10px solid #000; 
+            background-color: #66CDAA;    
+            color: #191970;    
+            border-bottom: 10px solid #000;
+        }   
+        </style>
+    </h:head>
+    <h:body>
+        <f:view>
+            
+            <h:form>
+                <h:dataTable styleClass="people" 
+                             style="font-size: #{DCProfileTabGeneralController.editable ? '20px' : '30px' }" 
+                             value="#{theaterBean.theatersForZipcode}" var="theater">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Theaters at #{theaterBean.zipcode.zipcodeValue}"/>
+                        </f:facet>
+                        <h:outputText value="#{theater.theaterName}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value=""/>
+                        </f:facet>
+                        <h:commandLink value="Show Available Movies" 
+                            action="#{movieBean.selectTheater(theater)}" >
+                        </h:commandLink>
+                    </h:column>
+                
+
+               </h:dataTable>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
+

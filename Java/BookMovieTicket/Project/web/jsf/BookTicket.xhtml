@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Book The Ticket For The Movie</title>
+        <style type="text/css">
+            body { 
+                background-color:#F5FFFA; 
+            }
+            form {
+                font-size: 30px; 
+                font-family: American Typewriter, serif;
+            }
+      
+            input {
+                height: 40px;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                background-color: #FFFAF0;
+                font-size: 20px;
+            }
+            
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+           
+            <h:panelGrid columns="2"  cellpadding = "10" cellspacing = "1">
+                <h:outputLabel value="Enter the number of tickets(Each ticket costs 10$)" />
+                <h:inputText value="#{validationBean.numberOfTickets}"  
+                             required="true" 
+                             requiredMessage="Number of tickets is required"/> 
+                <h:outputLabel value="Enter your credit card number" />
+                <h:inputText value="#{validationBean.creditCardNo}" maxlength="16"  size="16" 
+                             required="true" 
+                             requiredMessage="Credit card number is required"/>  
+                <h:outputLabel value="Enter your billing zipcode" />
+                <h:inputText value="#{validationBean.billingZipCode}" maxlength="5" size="5" 
+                             required="true" 
+                             requiredMessage="Billing zipcode is required"/> 
+                
+
+                <h:commandButton value="Finalize Payment" action="#{validationBean.validateValues()}" />
+                <h:outputText value="#{validationBean.validationMessage}" />
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
+

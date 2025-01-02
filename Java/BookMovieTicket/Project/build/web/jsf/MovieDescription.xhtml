@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Movie Information</title>
+        <style type="text/css">
+            body { 
+                background-color:#FFE4B5; 
+            }
+            form {
+                font-size: 30px; 
+                font-family: American Typewriter, serif;
+            }
+            
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2"  >
+                <h:outputLabel value="Movie Name:"/>
+                <h:outputText value="#{movieBean.movie.movieName}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2" >
+                <h:outputLabel value="Movie Description:"/>
+                <h:outputText value="#{movieBean.movie.description}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Movie Duration:"/>
+                <h:outputText value="#{movieBean.movie.duration}"/>
+            </h:panelGrid>
+            <h:commandLink value="Show Times" 
+                            action="#{movieBean.selectMovieShowTimes(movieBean.movie)}" >
+            </h:commandLink>
+        </h:form>
+     
+    </h:body>
+</html>

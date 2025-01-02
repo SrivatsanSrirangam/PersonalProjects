@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Movies For Theater</title>
+        <style type="text/css">
+        table.people td {
+            
+            padding: 100px;
+            text-align: center;
+            font-family: Palatino, URW Palladio L, serif;
+            border: 10px solid #000; 
+            background-color: #D2691E;    
+            color: #191970;    
+            border-bottom: 10px solid #000;
+        }
+/*        body, h0,h1, h2, h3, h4, h5, h6 {
+            font-family: Palatino, URW Palladio L, serif;
+        }*/
+        </style>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h:dataTable styleClass="people" style="font-size: #{DCProfileTabGeneralController.editable ? '30px' : '40px' }" value="#{movieBean.moviesForTheater}" var="movie">
+              
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Movies at: #{movieBean.theater.theaterName}"/>
+                        </f:facet>
+                        <h:outputText value="#{movie.movieName}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value=""/>
+                        </f:facet>
+                        <h:commandLink value="Show Description" 
+                            action="#{movieBean.selectMovieShowDescription(movie)}" >
+                        </h:commandLink>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value=""/>
+                        </f:facet>
+                        <h:commandLink value="Show Times For Movie" 
+                            action="#{movieBean.selectMovieShowTimes(movie)}" >
+                        </h:commandLink>
+                    </h:column>
+
+               </h:dataTable>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
