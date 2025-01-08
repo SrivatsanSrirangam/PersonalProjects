@@ -1,0 +1,195 @@
+---
+title: "Homework 3"
+subtitle: "4375 Machine Learning with Dr. Mazidi"
+author: "Srivatsan Srirangam"
+date: "02/13/2022"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+This homework runs logistic regression to predict the binary feature of whether or not a person was admitted to graduate school, based on a set of predictors: GRE score, TOEFL score, rating of undergrad university attended, SOP statement of purpose, LOR letter or recommendation, Undergrad GPA, Research experience (binary).
+
+The data set was downloaded from Kaggle: https://www.kaggle.com/mohansacharya/graduate-admissions
+
+The data is available in Piazza. 
+
+## Step 1 Load the data
+
+* Load the data
+* Examine the first few rows with head()
+
+```{r}
+# your code here
+df <- read.csv("Admission_Predict.csv", header=TRUE)
+head(df)
+```
+
+## Step 2 Data Wrangling
+
+Perform the following steps:
+
+* Make Research a factor
+* Get rid of the Serial No column
+* Make a new column that is binary factor based on if Chance.of.Admit > 0.5. Hint: See p. 40 in the book. 
+* Output column names with names() function
+* Output a summary of the data
+* Is the data set unbalanced? Why or why not?
+
+ Your commentary here:The data is balanced since all columns have equal number of data, with none having empty data
+
+```{r}
+# your code here
+df$Research <- as.factor(df$Research)
+df <- subset(df, select = -c(Serial.No.))
+df$Admit <- FALSE
+df$Admit[df$Chance.of.Admit>0.5] <- TRUE
+df$Admit <- factor(df$Admit)
+names(df)
+summary(df)
+```
+
+```{r}
+# put the summary here
+```
+
+## Step 3 Data Visualization
+
+* Create a side-by-side graph with Admit on the x axis of both graphs, GRE score on the y axis of one graph and TOEFL score on the y axis of the other graph; save/restore the original graph parameters
+* Comment on the graphs and what they are telling you about whether GRE and TOEFL are good predictors
+* You will get a lot of warnings, you can suppress them with disabling warnings as shown below:
+
+```
+{r,warning=FALSE}
+```
+
+Your commentary here:
+
+```{r,warning=FALSE}
+# your code here
+plot(df$Admit,df$GRE.Score)
+plot(df$Admit,df$TOEFL.Score)
+```
+
+
+## Step 4 Divide train/test
+
+* Divide into 75/25 train/test, using seed 1234
+
+```{r}
+# your code here
+set.seed(1234)
+i <- sample(1:nrow(df), 0.75*nrow(df), replace=FALSE)
+train <- df[i, ]
+test <- df[-i, ]
+(train)
+```
+
+## Step 5 Build a Model with all predictors 
+
+* Build a model, predicting Admit from all predictors
+* Output a summary of the model
+* Did you get an error? Why? Hint: see p. 120 Warning
+
+Your commentary here:  This is because the training data is perfectly or near perfectly linealy separable
+
+```{r}
+glm1 <- glm(Admit~., data=train, family="binomial")
+summary(glm1)
+```
+
+## Step 6 Build a Model with all predictors except Chance.of.Admit
+
+* Build another model, predicting Admit from all predictors *except* Chance.of.Admit
+* Output a summary of the model
+* Did you get an error? Why or why not?
+No, because Chance.of>admit was causing the warning flags and it was not included now. 
+
+```{r}
+# your code here
+#Use the subset without chance of admit
+glm2 <- glm(Admit~.-Chance.of.Admit, data=train, family="binomial")
+summary(glm2)
+```
+
+## Step 7 Predict probabilities
+
+* Predict the probabilities using type="response"
+* Examine a few probabilities and the corresponding Chance.of.Admit values
+* Run cor() on the predicted probs and the Chance.of.Admit, and output the correlation
+* What do you conclude from this correlation. 
+
+Your commentary here: This is a storng correlation
+
+```{r}
+# your code here
+probs <- predict(glm2, newdata=test, type="response")
+probs[1:10]
+test$Chance.of.Admit[1:10]
+
+#preds <- ifelse(probs>0.5,1,0)
+cor1 <- cor(probs, test$Chance.of.Admit)
+print(cor1)
+#acc <- mean(preds==test$Admit)
+#print(paste("glm2 accuracy is ",acc))
+
+
+
+
+```
+
+## Step 8 Make binary predictions, print table and accuracy
+
+* Now make binary predictions
+* Output a table comparing the predictions and the binary Admit column
+* Calculate and output accuracy
+* Was the model able to generalize well to new data?
+
+Your commentary here: Yes, since has an accuracy of 0.94 out of 1, where 1 is perfect.
+
+```{r}
+# your code here
+preds <- ifelse(probs>0.5,TRUE,FALSE)
+acc <-mean(preds== test$Admit)
+print(paste("glm2 accuracy =", acc))
+table(preds, test$Admit)
+```
+
+## Step 9 Output ROCR and AUC
+
+* Output a ROCR graph
+* Extract and output the AUC metric
+
+```{r}
+# your code here
+library("ROCR")
+pr <- prediction(probs, test$Admit)
+prf <- performance(pr, measure = "tpr", x.measure = "fpr")
+plot(prf)
+# compute AUC
+auc <- performance(pr, measure = "auc")
+auc <- auc@y.values[[1]]
+```
+
+
+## Step 10
+
+* Make two more graphs and comment on what you learned from each graph:
+  * Admit on x axis, SOP on y axis
+  * Research on x axis, SOP on y axis
+  
+Your commentary here:
+Plot 1:The greater the sop, the more likely the person will be admitted
+Plot2: The greater the Sop, the more likely is the research
+
+```{r}
+# plot 1
+plot(df$Admit,df$SOP)
+```
+
+```{r}
+# plot 2
+plot(df$Research,df$SOP)
+```
+
