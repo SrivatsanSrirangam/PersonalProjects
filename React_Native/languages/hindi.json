@@ -1,0 +1,29 @@
+{
+    "screens":{
+        "mainScreen":{
+            "search":"खोज",
+            "myCrops":"मेरी फसलें",
+            "myMoney":"मेरे पैसे",
+            "myHarvest":"मेरी फसल",
+            "home":"घर",
+            "banking":"बैंकिंग",
+            "knowledgeCenter":"ज्ञान केंद्र",
+            "account":"खाता"
+        },
+        "initial":{
+            "welcome":{
+                "next":"अगला"
+            },
+            "signUp":{
+                "phoneNumber":"फ़ोन नंबर",
+                "next":"संख्या",
+                "otp":"ओ.टी.पी"
+            },
+            "loginOrSignUp":{
+                "login":"लॉग इन करें",
+                "or":"या",
+                "signUp":"साइन अप करें"
+            }
+        }
+    }
+}

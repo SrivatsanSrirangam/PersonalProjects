@@ -1,0 +1,29 @@
+{
+    "screens":{
+        "mainScreen":{
+            "search":"Search",
+            "myCrops":"My Crops",
+            "myMoney":"My Money",
+            "myHarvest":"My Harvest",
+            "home":"Home",
+            "banking":"Banking",
+            "knowledgeCenter":"Knowledge Center",
+            "account":"Account"
+        },
+        "initial":{
+            "welcome":{
+                "next":"Next"
+            },
+            "signUp":{
+                "phoneNumber":"Phone Number",
+                "next":"Next",
+                "otp":"OTP"
+            },
+            "loginOrSignUp":{
+                "login":"Login",
+                "or":"Or",
+                "signUp":"Sign Up"
+            }
+        }
+    }
+}

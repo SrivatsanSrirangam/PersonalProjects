@@ -1,0 +1,2 @@
+alter table hitha_user
+drop constraint hitha_user_aadhar_number_key;

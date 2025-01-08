@@ -1,0 +1,29 @@
+{
+    "screens":{
+        "mainScreen":{
+            "search":"शोधा",
+            "myCrops":"माझी पिके",
+            "myMoney":"माझे पैसे",
+            "myHarvest":"माझी कापणी",
+            "home":"मुख्यपृष्ठ",
+            "banking":"बँकिंग",
+            "knowledgeCenter":"ज्ञान केंद्रे",
+            "account":"खाते"
+        },
+        "initial":{
+            "welcome":{
+                "next":"पुढे"
+            },
+            "signUp":{
+                "phoneNumber":"फोन नंबर",
+                "next":"पुढे",
+                "otp":"ओ.टी.पी"
+            },
+            "loginOrSignUp":{
+                "login":"लॉगिन",
+                "or":"किंवा",
+                "signUp":"साइन अप करा"
+            }
+        }
+    }
+}

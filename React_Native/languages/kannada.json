@@ -1,0 +1,29 @@
+{
+    "screens":{
+        "mainScreen":{
+            "search":"ಕಂಡುಹಿಡಿಯಿರಿ",
+            "myCrops":"ನನ್ನ ಬೆಳೆಗಳು",
+            "myMoney":"ನನ್ನ ಹಣ",
+            "myHarvest":"ನನ್ನ ಸುಗ್ಗಿ",
+            "home":"ಮನೆ",
+            "banking":"ಬ್ಯಾಂಕಿಂಗ್",
+            "knowledgeCenter":"ಜ್ಞಾನ ಕೇಂದ್ರ",
+            "account":"ಖಾತೆ"
+        },
+        "initial":{
+            "welcome":{
+                "next":"ಮುಂದೆ"
+            },
+            "signUp":{
+                "phoneNumber":"ದೂರವಾಣಿ ಸಂಖ್ಯೆ",
+                "next":"ಮುಂದೆ",
+                "otp":"ಒಟಿಪಿ"
+            },
+            "loginOrSignUp":{
+                "login":"ಲಾಗಿನ್",
+                "or":"ಅಥವಾ",
+                "signUp":"ಸೈನ್ ಅಪ್ ಮಾಡಿ"
+            }
+        }
+    }
+}
